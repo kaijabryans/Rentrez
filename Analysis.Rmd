@@ -1,0 +1,91 @@
+---
+title: "Asg_5"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load Packages
+```{r, include = F}
+library(dplyr)
+```
+
+## Important the Sequences file
+```{r}
+getwd()
+Sequences = read.csv("./Sequences.csv")
+```
+
+## Count the number of each base pair in each three sequences
+```{r}
+AD <- nchar(gsub("[^A]", "", Sequences$Sequence))
+TH <- nchar(gsub("[^T]", "", Sequences$Sequence))
+GU <- nchar(gsub("[^G]", "", Sequences$Sequence))
+CY <- nchar(gsub("[^C]", "", Sequences$Sequence))
+
+# To see exact numbers:
+print(AD)
+print(TH)
+print(CY)
+print(GU)
+```
+
+### Print out each sequence
+```{r}
+print(Sequences$Sequence[1])
+print(Sequences$Sequence[2])
+print(Sequences$Sequence[3])
+```
+
+### Print out number of each nucleotide as a table for each sequence
+```{r}
+#Creating sequence name row
+SequenceID <- c("HQ433692.1", "HQ433694.1", "HQ433691.1")
+
+#Creating the dataframe
+Data <- data.frame(cbind(SequenceID, AD, TH, GU, CY))
+knitr::kable(Data)
+```
+
+### Borrelia burgdorferi picture
+
+![Picture of bacteria](/Users/kaijabryans/Desktop/BIO 432/Week 5/bacteria!.jpeg) :
+
+[Informative Wikipedia article on borrelia burgdorferi](https://en.wikipedia.org/wiki/Borrelia_burgdorferi#:~:text=Borrelia%20burgdorferi%20is%20a%20bacterial,known%20to%20cause%20the%20disease) : 
+
+### Calculating GC content
+```{r}
+GC <- ("GC Content" = ((GU + CY)/(AD + CY + TH + GU)) * 100)
+
+GCTable <- data.frame("Sequence ID" = SequenceID, "GC Content" = GC)
+print(GCTable)
+
+knitr::kable(GCTable)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
