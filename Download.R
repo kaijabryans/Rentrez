@@ -5,8 +5,10 @@ ncbi_ids <- c("HQ433692.1", "HQ433694.1", "HQ433691.1")
 # Load the rentrez package into R
 library(rentrez)
 
-# Create an object from the nuccore database, from the unique ids in the fasta format to ....
-Bburg <- entrez_fetch(db = "nuccore", id = ncbi_ids, rettype = "fasta")
+# Create an object fetched from the NCBI database.
+Bburg <- entrez_fetch(db = "nuccore", # the NCBI databse
+                      id = ncbi_ids, # The unique identifies
+                      rettype = "fasta") # Determines what format we want
 print(Bburg)
 
 # Split Bburg object to create a new object
